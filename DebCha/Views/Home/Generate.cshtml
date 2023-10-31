@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Generator";
+}
+
+<div class="text-center">
+    <!-- Está mal escrito el getting del key de location porque dice "Locaton" en vez de "Location" -->
+    <!-- Por lo tanto la solución es cambiarlo -->
+    <h2>Welcome, @Context.Session.GetString("Username") from @Context.Session.GetString("Location")</h2>
+    <h2>Here is your randomly generated passcode:</h2>
+    <h1 class="passcode">@Context.Session.GetString("Passcode")</h1>
+    <div class="d-flex mx-auto w-25 justify-content-center">
+        <!-- faltó el metodo de petición, en este caso, el "method: POST" -->
+        <!-- <form action="reset"> -->
+        <form asp-action="Reset" asp-controller="Home" method="POST">
+            <label>Not you?</label>
+            <input type="submit" value="Log out" class="btn btn-danger">
+        </form>
+        <!--<form action="generate/new" method="post">-->
+        <form asp-action="GenerateNew" asp-controller="Home" method="POST">
+            <label>Want a new code?</label>
+            <input type="submit" value="New code" class="btn btn-info">
+        </form>
+    </div>
+</div>
